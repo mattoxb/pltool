@@ -17,14 +17,15 @@ depends_on = None
 
 
 def upgrade():
-    op.create_table('mc_question',
+    op.create_table('question',
             sa.Column('id',sa.Integer,primary_key=True),
             sa.Column('slug',sa.String(80),nullable=False),
             sa.Column('uuid',sa.String(80),nullable=False),
             sa.Column('text',sa.String,nullable=False))
-    op.create_table('mc_choices',
+    op.create_table('mc_choice',
             sa.Column('id',sa.Integer,primary_key=True),
-            sa.Column('mc_question_id',sa.Integer,sa.ForeignKey('mc_question.id')),
+            sa.Column('question_id',sa.Integer,sa.ForeignKey('question.id')),
+            sa.Column('text',sa.String,nullable=False),
             sa.Column('number',sa.Integer,nullable=False),
             sa.Column('correct',sa.Boolean,nullable=False))
 
